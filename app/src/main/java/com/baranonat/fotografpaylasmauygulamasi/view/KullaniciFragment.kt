@@ -1,4 +1,4 @@
-package com.baranonat.fotografpaylasmauygulamasi
+package com.baranonat.fotografpaylasmauygulamasi.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import com.baranonat.fotografpaylasmauygulamasi.databinding.FragmentKullaniciBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -51,16 +50,19 @@ class KullaniciFragment : Fragment() {
 
         val email=binding.emailText.text.toString()
         val password=binding.passwordText.text.toString()
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {result->
-            if(result.isSuccessful){
-                val action= KullaniciFragmentDirections.actionKullaniciFragmentToFeedFragment()
-                Navigation.findNavController(view).navigate(action)
+        if(email.isNotEmpty() && password.isNotEmpty()){
+            auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener {result->
+                if(result.isSuccessful){
+                    val action= KullaniciFragmentDirections.actionKullaniciFragmentToFeedFragment()
+                    Navigation.findNavController(view).navigate(action)
+                }
+
+            }.addOnFailureListener { exception->
+                Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
+
             }
-
-        }.addOnFailureListener { exception->
-            Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
-
         }
+
 
 
     }
@@ -69,13 +71,15 @@ class KullaniciFragment : Fragment() {
 
         val email=binding.emailText.text.toString()
         val password=binding.passwordText.text.toString()
-
-        auth.signInWithEmailAndPassword(email,password).addOnSuccessListener { result->
-            val action= KullaniciFragmentDirections.actionKullaniciFragmentToFeedFragment()
-            Navigation.findNavController(view).navigate(action)
-        }.addOnFailureListener { exception->
-            Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
+        if(email.isNotEmpty() && password.isNotEmpty()){
+            auth.signInWithEmailAndPassword(email,password).addOnSuccessListener { result->
+                val action= KullaniciFragmentDirections.actionKullaniciFragmentToFeedFragment()
+                Navigation.findNavController(view).navigate(action)
+            }.addOnFailureListener { exception->
+                Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
         }
+
 
 
 
