@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577364401071",
+    "project_id": "fotografpaylasim-16e80",
+    "storage_bucket": "fotografpaylasim-16e80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577364401071:android:9de4ebd90c68c778c9ed5a",
+        "android_client_info": {
+          "package_name": "com.baranonat.fotografpaylasmauygulamasi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2ji8HzEeYNNT2wdeVa4LZOj5hWJEg-mo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
